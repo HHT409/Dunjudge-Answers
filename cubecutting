@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+#include <iomanip>
+using namespace std;
+#define int long long
+
+main() {
+    long long a, b, c, ans;
+    cin >> a >> b >> c;
+    ans = (a * b * c) - 1;
+    cout << ans;
+}
