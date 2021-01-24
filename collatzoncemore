@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+set <int> s;
+
+int main() {
+    long long n, ans = 0;
+    long long f[20];
+    cin >> n;
+    f[0] = 1;
+    s.insert(f[0]);
+    f[1] = 1;
+    s.insert(f[1]);
+    for (long long i = 2; i < 20; i++) {
+        f[i] = f[i - 1] + f[1 - 2];
+        s.insert(f[i]);
+    }
+    while (n != 0 && n != 1 && n != 2 && n != 3 && n != 5 && n != 8 && n != 13 && n != 21 && n != 34 && n != 55 && n != 89 && n != 144 && n != 233 && n != 377 && n != 610 && n != 987 && n != 1597 && n != 2584 && n != 4181 && n != 6765) {
+        if (n % 2 == 0) {
+            n = n / 2;
+            ans++;
+        } else {
+            n = 3 * n + 1;
+            ans++;
+        }
+    }
+    cout << ans;
+}
