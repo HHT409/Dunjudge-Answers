@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    int n, m, a, b;
+    cin >> n >> m;
+    cin >> a >> b;
+    int r = n * a, c = m * b;
+    bool sahov[r][c];
+    memset(sahov, 0, sizeof(sahov));
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            if ((i / a) % 2 == 0) {
+                if ((j / b) % 2 == 0) {
+                    sahov[i][j] == 1;
+                    cout << "X";
+                    if (j == c - 1) {
+                        cout << '\n';
+                    }
+                } else {
+                    cout << ".";
+                    if (j == c - 1) {
+                        cout << '\n';
+                    }
+                }
+            } else if ((i / a) % 2 == 1) {
+                if ((j / b) % 2 == 1) {
+                    sahov[i][j] == 1;
+                    cout << "X";
+                    if (j == c - 1) {
+                        cout << '\n';
+                    }
+                } else {
+                    cout << ".";
+                    if (j == c - 1) {
+                        cout << '\n';
+                    }
+                }
+            }
+        }
+    }
+}
