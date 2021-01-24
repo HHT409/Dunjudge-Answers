@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string str, hello = "Hello World";
+    getline (cin, str);
+    int n = str.compare("Hello World");
+    if (n == 0) {
+        cout << "OK";
+    } else {
+        cout << "Wrong Answer";
+    }
+}
