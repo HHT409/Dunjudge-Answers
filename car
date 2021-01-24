@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int n, m, parent[1000000], minimum, a, b, dist, ans;
+vector <pair <int, pair <int, int> > > connect;
+
+int find_set(int n) {
+    if (parent[n] == n) {
+        return n;
+    }
+    parent[n] = find_set(parent[n]);
+    return parent[n];
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        cin >> a >> b >> dist;
+        connect.push_back(make_pair(dist, make_pair(a, b)));
+    }
+    for (int i = 0; i < n; i++) {
+        parent[i] = i;
+    }
+    sort(connect.begin(), connect.end());
+    for (auto it: connect) {
+        a = it.second.first;
+        b = it.second.second;
+        if (find_set(a) == find_set(b)) {
+            continue;
+        }
+        parent[find_set(a)] = find_set(b);
+        ans = max(ans, it.first);
+        if (find_set(1) == find_set(n)) {
+            break;
+        }
+    }
+    cout << ans;
+}
