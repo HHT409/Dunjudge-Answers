@@ -1,0 +1,33 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+map <char, int> alp;
+map <int, int> num;
+
+main(){
+    alp['a'] = 1; alp['b'] = 2; alp['c'] = 3; alp['d'] = 1; alp['e'] = 2; alp['f'] = 3; alp['g'] = 1; alp['h'] = 2; alp['i'] = 3; alp['j'] = 1; alp['k'] = 2; alp['l'] = 3; alp['m'] = 1; alp['n'] = 2; alp['o'] = 3; alp['p'] = 1; alp['q'] = 2; alp['r'] = 3; alp['s'] = 4; alp['t'] = 1; alp['u'] = 2; alp['v'] = 3; alp['w'] = 1; alp['x'] = 2; alp['y'] = 3; alp['z'] = 4;
+    num[0] = 2; num[1] = 1; num[2] = 4; num[3] = 4; num[4] = 4; num[5] = 4; num[6] = 4; num[7] = 5; num[8] = 4; num[9] = 5;
+    int sum = 1;
+    string n;
+    getline(cin, n);
+    int len = n.size();
+    for (int i = 0; i < len; i++) {
+        char x = n[i];
+        if (isalpha(x)) {
+            if (islower(x)) {
+                sum += alp[x];
+            } else {
+                x = tolower(x);
+                sum += (alp[x] + 1);
+            }
+        } else if (isdigit(x)) {
+            sum += num[x - '0'];
+        } else if (x == ' ') {
+            sum++;
+        } else {
+            sum += 2;
+        }
+    }
+    cout << sum;
+}
