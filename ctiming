@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int32_t main() {
+    int k, n, m, sum;
+    cin >> k >> n >> m;
+    if ((k == 11 && n < 11) or (k == 11 && n == 11 && m < 11) or (k < 11)) {
+        cout << "-1";
+    } else {
+        sum = 12 * 60 + 49 + 1440 * (k - 12) + 60 * n + m;
+        cout << sum;
+    }
+}
