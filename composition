@@ -1,0 +1,31 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+map <char, int> mp;
+priority_queue <int> pq;
+
+main() {
+    int n, m, sum = 0;
+    cin >> n >> m;
+    mp['a'] = 1; mp['b'] = 2; mp['c'] = 3; mp['d'] = 4; mp['e'] = 5; mp['f'] = 6; mp['g'] = 7; mp['h'] = 8; mp['i'] = 9; mp['j'] = 10; mp['k'] = 11; mp['l'] = 12; mp['m'] = 13; mp['n'] = 14; mp['o'] = 15; mp['p'] = 16; mp['q'] = 17; mp['r'] = 18; mp['s'] = 19; mp['t'] = 20; mp['u'] = 21; mp['v'] = 22; mp['w'] = 23; mp['x'] = 24; mp['y'] = 25; mp['z'] = 26;
+    mp['A'] = 1; mp['B'] = 2; mp['C'] = 3; mp['D'] = 4; mp['E'] = 5; mp['F'] = 6; mp['G'] = 7; mp['H'] = 8; mp['I'] = 9; mp['J'] = 10; mp['K'] = 11; mp['L'] = 12; mp['M'] = 13; mp['N'] = 14; mp['O'] = 15; mp['P'] = 16; mp['Q'] = 17; mp['R'] = 18; mp['S'] = 19; mp['T'] = 20; mp['U'] = 21; mp['V'] = 22; mp['W'] = 23; mp['X'] = 24; mp['Y'] = 25; mp['Z'] = 26;
+    string str;
+    for (int i = 0; i < n; i++) {
+        cin >> str;
+        int len = str.size(), total = 0;
+        for (int j = 0; j < len; j++) {
+            total += mp[str[j]];
+        }
+        pq.push(total);
+    }
+    for (int i = 0; i < m; i++) {
+        if (!pq.empty()) {
+            sum += pq.top();
+            pq.pop();
+        } else {
+            break;
+        }
+    }
+    cout << sum;
+}
