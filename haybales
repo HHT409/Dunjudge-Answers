@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+#include <math.h>
+using namespace std;
+#define int long long
+
+int32_t main() {
+    int n, avg = 0, sum = 0;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        avg += arr[i];
+    }
+    avg /= n;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] < avg) {
+            sum += avg - arr[i];
+        }
+    }
+    cout << sum;
+}
