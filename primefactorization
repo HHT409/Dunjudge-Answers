@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+  	int num;
+  	cin >> num;
+  	
+	for (int i = 2; i <= sqrt(num); i++) {
+		int times = 0;
+		while (num % i == 0) {
+			num /= i;
+			times++;
+		}
+		if (times != 0) cout << i << "^" << times << '\n';
+	}
+	if (num > 1) cout << num << "^1" << '\n';
+}
