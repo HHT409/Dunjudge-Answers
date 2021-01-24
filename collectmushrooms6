@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int r, c, d, k, ans = 0;
+    cin >> r >> c >> d >> k;
+    char grid[r + 1][c + 1];
+    int A [r + 1][c + 1], ss[r + 1][c + 1];
+    
+    for (int i = 1; i <= r; i++) {
+        for (int j = 1; j <= c; j++) {
+            cin >> grid[i][j];
+        }
+    }
+    memset(A, 0, sizeof(A));
+    for (int i = 1; i <= r; i++) {
+        for (int j = 1; j <= c; j++) {
+            if (grid[i][j] == 'S') A[i][j] = 1;
+        }
+    }
+    for (int i = 1; i <= r; i++) {
+        for (int j = 1; j <= c; j++) {
+            ss[i][j] = ss[i - 1][j] + ss[i][j - 1] - ss[i - 1][j - 1] + A[i][j];
+        }
+    }
+    
+    for (int i = 1; i <= r; i++) {
+        for (int j = 1; j <= c; j++) {
+            if (grid[i][j] == 'M') {
+                int x1 = i - d;
+                int y1 = j - d;
+                int x2 = i + d;
+                int y2 = j + d;
+                if (x1 <= 0) x1 = 1;
+                if (y1 <= 0) y1 = 1;
+                if (x2 > r) x2 = r;
+                if (y2 > c) y2 = c;
+                if (ss[x2][y2] - ss[x1 - 1][y2] - ss[x2][y1 - 1] + ss[x1 - 1][y1 - 1] >= k) ans++;
+            }
+        }
+    }
+    cout << ans;
+}
