@@ -1,0 +1,31 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+deque <int> dq;
+
+main() {
+    int n, m;
+    char x;
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        dq.push_back(i);
+    }
+    cin >> x;
+    while (x != '.') {
+        if (x == 'A') {
+            int k = dq.front();
+            dq.pop_front();
+            dq.push_back(k);
+        } else {
+            int hi1 = dq.front();
+            dq.pop_front();
+            int hi2 = dq.front();
+            dq.pop_front();
+            dq.push_back(hi2);
+            dq.push_front(hi1);
+        }
+        cin >> x;
+    }
+    cout << dq[m - 1] << " " << dq[m] << " " << dq[m + 1];
+}
