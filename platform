@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+#include <ctype.h>
+#include <string.h>
+using namespace std;
+
+int32_t main() {
+    long long n;
+    cin >> n;
+    for (long long i = 0; i < n; i++) {
+        for (long long j = 0; j < n - 1 - i; j++) {
+            cout << " ";
+        }
+        cout << "/";
+        for (long long j = 0; j < i * 2; j++) {
+            cout << " ";
+        }
+        cout << "\\" << '\n';
+    }
+    for (long long i = 0; i < n; i++) {
+        for (long long j = 0; j < i; j++) {
+            cout << " ";
+        }
+        cout << "\\";
+        for (long long j = 0; j < 2 * (n - 1 - i); j++) {
+            cout << " ";
+        }
+        cout << "/" << '\n';
+    }
+}
