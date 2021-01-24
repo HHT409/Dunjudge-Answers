@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+#include <math.h>
+using namespace std;
+#define int long long
+stack <long long> st;
+
+main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    long long a, n, m;
+    cin >> a;
+    for (long long i = 0; i < a; i++) {
+        cin >> n >> m;
+        long long ans = m * log10(n) + 1;
+        cout << ans << '\n';
+    }
+}
