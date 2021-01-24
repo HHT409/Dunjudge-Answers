@@ -1,0 +1,9 @@
+#include "reverse.h"
+#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
+
+std::vector<long long> reverse (std::vector<long long> a) {
+  reverse(a.begin(), a.end());
+  return std::vector<long long>(a);
+}
