@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define int long long
+
+ll n, m, a, b;
+ll arr[2000005];
+multiset <ll> ms;
+
+main() {
+    cin >> n >> m;
+    for (ll i = 0; i < n; i++) {
+        cin >> a >> b;
+        ms.insert(0);
+        if (a == 0) {
+            ms.erase(ms.find(arr[b % m]));
+            arr[b % m]--;
+            ms.insert(arr[b % m]);
+        } else {
+            ms.erase(ms.find(arr[b % m]));
+            arr[b % m]++;
+            ms.insert(arr[b % m]);
+        }
+        if (!ms.empty()) {
+            cout << *(--ms.end()) << '\n';
+        } else {
+            cout << 0;
+        }
+    }
+}
