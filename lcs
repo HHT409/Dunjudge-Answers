@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+int lcs(char X[], char Y[], int m, int n) {
+    int thingi[m + 1][n + 1];
+    for (int i = 0; i <= m; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (i == 0 or j == 0) {
+                thingi[i][j] = 0;
+            } else if (X[i - 1] == Y[j - 1]) {
+                thingi[i][j] = thingi[i - 1][j - 1] + 1;
+            } else {
+                thingi[i][j] = max(thingi[i - 1][j], thingi[i][j - 1]);
+            }
+        }
+    }
+    return thingi[m][n];
+}
+
+int32_t main() {
+    string a, b;
+    cin >> a >> b;
+    int len1 = a.size();
+    int len2 = b.size();
+    char X[len1];
+    char Y[len2];
+    for (int i = 0; i < len1; i++) {
+        X[i] = a[i];
+    }
+    for (int i = 0; i < len2; i++) {
+        Y[i] = b[i];
+    }
+    cout << lcs(X, Y, len1, len2);
+}
