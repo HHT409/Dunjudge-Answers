@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+#include <math.h>
+using namespace std;
+#define int long long
+
+main() {
+    unsigned long long n, ans = 0;
+    cin >> n;
+    while (n > 0) {
+       ans += n % 2;
+       n /= 2;
+    }
+    cout << ans;
+}
