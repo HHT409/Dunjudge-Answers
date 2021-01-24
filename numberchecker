@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#include <sstream>
+using namespace std;
+
+int main() {
+    long long sum = 0;
+    string n;
+    cin >> n;
+    for (int i = 0; i < n.size(); i++) {
+        if (n[i] == '0' or n[i] == '1' or n[i] == '2' or n[i] == '3' or n[i] == '4' or n[i] == '5' or n[i] == '6' or n[i] == '7' or n[i] == '8' or n[i] == '9') {
+            sum++;
+        }
+    }
+    if (sum == n.size()) {
+        stringstream hi(n);
+        long long m = 0;
+        hi >> m;
+        cout << m * 2;
+    } else {
+        for (int i = 0; i < n.size(); i++) {
+		n[i] = toupper(n[i]);
+        }
+        cout << n;
+    }
+}
