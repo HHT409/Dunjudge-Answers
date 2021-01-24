@@ -1,0 +1,28 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+set <int> s;
+
+main() {
+    int n, m, a, b;
+    string com;
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        cin >> com;
+        if (com == "SLEEP") {
+            cin >> a;
+            s.insert(a);
+        } else if (com  == "WAKE") {
+            cin >> a;
+            s.erase(a);
+        } else if (com == "TRANSMIT") {
+            cin >> a >> b;
+            if (s.lower_bound(a) != s.end() and *s.lower_bound(a) <= b) {
+                cout << "NO\n";
+            } else {
+                cout << "YES\n";
+            }
+        }
+    }
+}
