@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+#include "minstack.h"
+using namespace std;
+
+stack <int> st;
+stack <int> minimum;
+
+void push(int X) {
+	st.push(X);
+	if (minimum.size() > 0) {
+	    if (X < minimum.top()) {
+	        minimum.push(X);
+	    } else {
+	        minimum.push(minimum.top());
+	    }
+	} else {
+	    minimum.push(X);
+	}
+}
+
+void pop() {
+	st.pop();
+	minimum.pop();
+}
+
+int top() {
+	return st.top();
+}
+
+int getMin() {
+	return minimum.top();
+}
