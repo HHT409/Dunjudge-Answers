@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+main() {
+    long long n, e, a, b;
+    cin >> n >> e;
+    int thing[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            thing[i][j] = 0;
+        }
+    }
+    for (int i = 0; i < e; i++) {
+        cin >> a >> b;
+        thing[a - 1][b - 1] = 1;
+        thing[b - 1][a - 1] = 1;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << thing[i][j];
+        }
+        if (i < n - 1) {
+            cout << '\n';
+        }
+    }
+}
