@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    int n;
+    cin >> n;
+    char board[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> board[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (board[i][j] == 'Q') {
+                for (int p = 0; p < n; p++) {
+                    if (p != i) {
+                        if (board[p][j] == 'Q') {
+                            // vertical attack
+                            cout << "Attack";
+                            return 0;
+                        }
+                    }
+                }
+                for (int p = 0; p < n; p++) {
+                    if (p != j) {
+                        if (board[i][p] == 'Q') {
+                            //horizontal attack
+                            cout << "Attack";
+                            return 0;
+                        }
+                    }
+                }
+                for (int p = 1; p <= n - 1 - max(i, j); p++) {
+                    if (board[i + p][j + p] == 'Q') {
+                        //down-right attack
+                        cout << "Attack";
+                        return 0;
+                    }
+                }
+                for (int p = 1; p <= min(n - 1 - j, i); p++) {
+                    if (board[i - p][j + p] == 'Q') {
+                        //up-right attack
+                        cout << "Attack";
+                        return 0;
+                    }
+                }
+                for (int p = 1; p <= min(i, j); p++) {
+                    if (board[i - p][j - p] == 'Q') {
+                        //up-left attack
+                        cout << "Attack";
+                        return 0;
+                    }
+                }
+                for (int p = 1; p <= min(n - 1 - i, j); p++) {
+                    if (board[i + p][j - p] == 'Q') {
+                        //left-down attack
+                        cout << "Attack";
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
+    cout << "No Attack";
+}
