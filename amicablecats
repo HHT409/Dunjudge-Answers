@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int factorSum(int n) {
+	int total = 0;
+	for (int i = 1; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			if (i == 1 || n/i == 1) total += i;
+			else total += i + n/i;
+		}
+	}
+	return total;
+}
+
+main() {
+	int num;
+	cin >> num;
+	int partner = factorSum(num);
+	if (num != partner && factorSum(partner) == num) {
+		cout << partner << '\n';
+	} else {
+		cout << "-1\n";
+	}
+}
