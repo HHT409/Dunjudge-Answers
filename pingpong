@@ -1,0 +1,33 @@
+#include "pingpong.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+string winner(string S) {
+    long long p = 0, r = 0, ptotal = 0, rtotal = 0;
+    string potato = "Potato", rar = "Rar";
+    for (long long i = 0; i < S.size(); i++) {
+        if (S[i] == 'P') {
+            p++;
+        } else {
+            r++;
+        }
+        if (p >= 11 or r >= 11) {
+            if (abs(p - r) >= 2) {
+                if (p > r) {
+                    ptotal++;
+                    p = 0;
+                    r = 0;
+                } else {
+                    rtotal++;
+                    r = 0;
+                    p = 0;
+                }
+            }
+        }
+    }
+    if (ptotal > rtotal) {
+        return potato;
+    } else {
+        return rar;
+    }
+}
