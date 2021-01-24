@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int32_t main() {
+    int l, s, h;
+    cin >> l >> s >> h;
+    if (2*l - s - h < s + h) {
+        cout << 2*l - s - h;
+    } else {
+        cout << s + h;
+    }
+}
