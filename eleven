@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+#include <sstream>
+using namespace std;
+
+int main() {
+    string n;
+    cin >> n;
+    long long sum1 = 0, sum2 = 0;
+    for (long long i = 0; i < n.size(); i++) {
+        if (i % 2 == 0) {
+            sum1 += n[i] - '0';
+        } else {
+            sum2 += n[i] - '0';
+        }
+    }
+    if (sum1 == sum2 or abs(sum1 - sum2) % 11 == 0) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+}
