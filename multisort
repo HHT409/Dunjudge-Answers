@@ -1,0 +1,26 @@
+//20
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        int arr[10000];
+        for (int j = 0; j < m; j++) {
+            cin >> arr[j];
+        }
+        sort(arr, arr + m);
+        for (int j = 0; j < m; j++) {
+            if (j != m - 1) {
+                cout << arr[j] << " ";
+            } else {
+                cout << arr[j];
+            }
+        }
+        if (i != n - 1) {
+            cout << '\n';
+        }
+    }
+}
