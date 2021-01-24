@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+bool isPalindrome(string n) {
+    for (int i = 0; i < n.size() / 2; i++)
+        if (n[i] != n[n.size() - 1 - i])
+            return false;
+    return true;
+}
+
+string convertNumIntoString(int n) {
+    if (n == 0)
+        return "0";
+
+    string snum = "";
+    while (n > 0) {
+        snum += (n % 10 - '0');
+        n /= 10;
+    }
+    return snum;
+}
+
+int closest_palindrome(int n) {
+    int rnum = n - 1;
+    while (!isPalindrome(convertNumIntoString(abs(rnum)))) {
+        rnum--;
+    }
+    int snum = n + 1;
+    while (!isPalindrome(convertNumIntoString(snum))) {
+        snum++;
+    }
+    if (abs(n - rnum) > abs(n - snum)) {
+        return snum;
+    } else {
+        return rnum;
+    }
+}
+
+int32_t main() {
+    long long n;
+    cin >> n;
+    if (isPalindrome(convertNumIntoString(abs(n)))) {
+        cout << 0;
+    } else {
+        long long p = closest_palindrome(n);
+        cout << abs(n - p);
+    }
+}
