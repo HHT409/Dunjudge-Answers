@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+int a;
+
+int main () {
+	cin >> a;
+	if (3 > a) cout << "That's a terrible potato!";
+	if (3 <= a and a <= 5) cout << "That's a normal potato!";
+	if (6 <= a and a <= 8) cout << "That's a good potato!";
+	if (a > 8) cout << "OMG POTATOES!!!";
+}
