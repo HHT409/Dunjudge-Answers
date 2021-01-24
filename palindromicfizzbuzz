@@ -1,0 +1,38 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int oneDigit(int num) {
+    return (num >= 0 && num < 10);
+}
+
+bool isPalUtil(int num, int* dupNum) {
+    if (oneDigit(num))
+        return (num == (*dupNum) % 10);
+    if (!isPalUtil(num/10, dupNum))
+        return false;
+    *dupNum /= 10;
+    return (num % 10 == (*dupNum) % 10);
+}
+
+int isPal(int num) {
+    if (num < 0)
+       num = - num;
+    int *dupNum = new int(num);
+
+    return isPalUtil(num, dupNum);
+}
+
+main() {
+    int a, b;
+    cin >> a >> b;
+    for (int i = a; i <= b; i++) {
+         if (isPal(i)) {
+            cout << "Palindrome!\n";
+         } else {
+            cout << i << '\n';
+         }
+    }
+    return 0;
+}
