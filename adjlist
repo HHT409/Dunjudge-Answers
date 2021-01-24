@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+main() {
+    long long n, e, a, b;
+    cin >> n >> e;
+    vector <int> thing[n + 1];
+    for (int i = 0; i < e; i++) {
+        cin >> a >> b;
+        thing[a].push_back(b);
+        thing[b].push_back(a);
+    }
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j < thing[i].size(); j++) {
+            cout << thing[i][j];
+            if (j != thing[i].size() - 1) {
+                cout << " ";
+            }
+        }
+        cout << '\n';
+    }
+}
