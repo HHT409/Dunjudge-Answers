@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+void print_arr(string str[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << str[i] << '\n';
+}
+
+void rverse_arr(string arr[], int start, int end) {
+    while (start < end) {
+        string n = arr[start];
+        arr[start] = arr[end];
+        arr[end] = n;
+        start++;
+        end--;
+    }
+}
+
+void sort(string s[], int n) {
+    for (int i = 1 ;i < n; i++) {
+        string str = s[i];
+        int j = i - 1;
+        while (j >= 0 && str.length() <= s[j].length()) {
+            s[j + 1] = s[j];
+            j--;
+        }
+        s[j + 1] = str;
+    }
+}
+
+main() {
+    int n;
+    cin >> n;
+    string str[n];
+    for (int i = 0; i < n; i++) {
+        cin >> str[i];
+    }
+    sort(str, n);
+    rverse_arr(str, 0, n - 1);
+    print_arr(str, n);
+}
