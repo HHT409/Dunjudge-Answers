@@ -1,0 +1,24 @@
+#include "peanutparty.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+int minStrawberries(int n, int m, int arr[]) {
+    int prefixsum[n + 1];
+    prefixsum[1] = arr[0];
+    for (int i = 2; i <= n; i++) {
+        prefixsum[i] = prefixsum[i - 1] + arr[i - 1];
+    }
+    int ans[n - m + 2];
+    ans[0] = 1e9;
+    for (int i = 1; i <= n - m + 1 ; i++) {
+        if (i == 1) {
+            ans[i] = prefixsum[m];
+        } else if (i == n - m + 1) {
+            ans[i] = prefixsum[n] - prefixsum[n - m];
+        } else {
+            ans[i] = prefixsum[i + m] - prefixsum[i];
+        }
+    }
+    sort(ans, ans + n - m + 1);
+    return ans[0];
+}
