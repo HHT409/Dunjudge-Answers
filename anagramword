@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#include <ctype.h>
+using namespace std;
+#define int long long
+
+bool is_anagram(string str1, string str2) {
+    string newstr1 = "";
+    string newstr2 = "";
+    for (int i = 0; i < str1.size(); i++) {
+        if (isalpha(str1[i])) {
+            newstr1 += tolower(str1[i]);
+        }
+    }
+    for (int i = 0; i < str2.size(); i++) {
+        if (isalpha(str2[i])) {
+            newstr2 += tolower(str2[i]);
+        }
+    }
+    int n1 = newstr1.length();
+    int n2 = newstr2.length();
+    sort(newstr1.begin(), newstr1.end());
+    sort(newstr2.begin(), newstr2.end());
+    for (int i = 0; i < n1; i++)
+        if (newstr1[i] != newstr2[i])
+            return false;
+    return true;
+}
+
+int32_t main() {
+    string str1, str2;
+    getline(cin, str1);
+    getline(cin, str2);
+    if (is_anagram(str1, str2)) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+}
