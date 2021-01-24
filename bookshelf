@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+typedef long long ll;
+
+map <ll, ll> mp;
+deque <ll> dq;
+
+ll k, n, m, l = 0, r = 1;
+
+ll find_book(ll n) {
+    return mp[n] - l;
+}
+
+int32_t main() {
+    cin >> k;
+    for (int i = 0; i < k; i++) {
+        cin >> n;
+        if (n == 1) {
+            cin >> m;
+            dq.push_front(m);
+            mp[m] = l--;
+        } else if (n == 2) {
+            cin >> m;
+            dq.push_front(m);
+            mp[m] = r++;
+        } else if (n == 3) {
+            dq.pop_front();
+            l++;
+        } else if (n == 4) {
+            dq.pop_back();
+            r--;
+        } else if (n == 5) {
+            cin >> m;
+            cout << find_book(m) << '\n';
+        } else if (n == 6) {
+            cin >> m;
+            cout << dq.size() - find_book(m) + 1 << '\n';
+        }
+    }
+}
