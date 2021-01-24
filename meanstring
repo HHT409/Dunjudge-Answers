@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int long long a, sum = 0;
+    int arr[10000];
+    cin >> a;
+    for (int i = 0; i < a; i++) {
+        cin >> arr[i];
+    }
+    for (int j = 0; j < a; j++) {
+        sum += arr[j];
+    }
+    cout << sum / a;
+}
