@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int>primefac;
+
+int main(){
+	long long x;
+	cin>>x;
+	for (int i=2; i<=sqrt(x); i++){
+		while(x%i == 0){
+			primefac.push_back(i);
+			x/=i;
+		}
+	}
+	if (x==1 or x==0){
+		cout<<"Not Prime";
+	}
+	else if (primefac.size()>=1){
+		cout<<"Not Prime";
+	}
+	else{
+		cout<<"Prime";
+	}
+}
