@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int N, M;
+vector <int> x[3000];
+int dp[300];
+int32_t main() {
+	
+	cin >> N >> M;
+	for (int i = 0; i < M; i++) {
+		int a, b; cin >> a >> b;
+		x[b].push_back(a);
+	}
+	for (int i =1; i < N; i++) x[i].push_back(i -1);
+	dp[0] = 0;
+	for (int i = 1; i < N; i++) {
+		dp[i] = (long long) 1e18;
+		for (auto it: x[i]) dp[i] = min(dp[i], dp[it] + 1);
+	}
+	cout << dp[N - 1];
+}
