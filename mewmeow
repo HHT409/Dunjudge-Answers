@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+#include <iomanip>
+using namespace std;
+#define int long long
+
+main() {
+    long long n, male = 0, female = 0;
+    float ans;
+    cin >> n;
+    string str[n];
+    for (int i = 0; i < n; i++) {
+        cin >> str[i];
+        if (str[i] == "MEW") male++;
+        else if (str[i] == "MEOW") female++;
+    }
+    if (male == 0) {
+        cout << "OMG MEEEAHHHH!!!!\n";
+    } else {
+        ans = female / male;
+        cout << ans << '\n';
+    }
+}
