@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool has7 (long long number) {
+    while (number != 0) {
+        int digit = number % 10;
+        if (digit == 7) return true;
+        number /= 10;
+    }
+    return false;
+}
+
+main() {
+    long long n, k, a;
+    cin >> n >> k >> a;
+    for (long long i = 0; i < k; i++) {
+        long long out = i * n + a;
+        if (out % 7 == 0 or has7(out) == true) {
+            cout << "UP!\n";
+        } else {
+            cout << out << '\n';
+        }
+    }
+}
