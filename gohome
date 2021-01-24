@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int totaln = 0, totals = 0, totale = 0, totalw = 0;
+    string s;
+    cin >> s;
+    int len = s.size();
+    for (int i = 0; i < len; i++) {
+        if (s[i] == 'N') {
+            totaln++;
+        } else if (s[i] == 'S') {
+            totals++;
+        } else if (s[i] == 'E') {
+            totale++;
+        } else if (s[i] == 'W') {
+            totalw++;
+        }
+    }
+    if (totaln >= 1 && totals == 0) {
+        cout << "No";
+    } else if (totals >= 1 && totaln == 0) {
+        cout << "No";
+    }  else if (totale >= 1 && totalw == 0) {
+        cout << "No";
+    }  else if (totalw >= 1 && totale == 0) {
+        cout << "No";
+    } else {
+        cout << "Yes";
+    }
+}
