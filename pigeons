@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main () {
+	int n, m, counter = 0;
+	string x;
+	cin >> n >> m;
+	for (int i = 0; i < m; i++) {
+		cin >> x;
+		if (x == "LAND") {
+			counter += 1;
+		} else if (x == "LEAVE"){
+			counter -= 1;
+		} else {
+			counter = 0;
+		}
+		if (counter > n) {
+			cout << "PLAN REJECTED";
+			return 0;
+		}
+	}
+	cout << "PLAN ACCEPTED";
+	
+}
