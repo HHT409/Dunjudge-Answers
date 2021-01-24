@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+void permute(string n, string m){
+    if(m == ""){
+        cout << n << '\n';
+        return;
+    }
+    for(int i = 0; m[i]; ++i){
+        string wk(m);
+        permute(n + m[i], wk.erase(i, 1));
+    }
+}
+
+int main(){
+    int n;
+    cin >> n;
+    string s;
+    if (n == 1) s = "1";
+    if (n == 2) s = "12";
+    if (n == 3) s = "123";
+    if (n == 4) s = "1234";
+    if (n == 5) s = "12345";
+    if (n == 6) s = "123456";
+    if (n == 7) s = "1234567";
+    sort(s.begin(), s.end());
+    permute("", s);
+}
