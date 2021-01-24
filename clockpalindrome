@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+typedef pair <int,int> pi;
+const int mod = 1e9+7;
+
+int n;
+string A,B;
+int dp[1000010][2][2];
+
+void add_self(int &a, int b) {
+	a += b;
+	a %= mod;
+}
+
+int dpf(int z, int j, int k) {
+	if (z == n) {
+        return 1;
+	}
+	if (dp[z][j][k] != -1) {
+        return dp[z][j][k];
+	}
+	int a = A[z] - '0', b = B[z] - '0';
+	dp[z][j][k] = 0;
+	int maxc = 9;
+	if (j) maxc = a;
+
+	if (z == n - 1) {
+		if (k) maxc = min(maxc,b - 1);
+		else maxc = min(maxc,b);
+		for (int i = 0; i <= maxc; i++) {
+			add_self(dp[z][j][k],dpf(z + 1, 0, 0));
+		}
+		return dp[z][j][k];
+	}
+
+	for (int i = 0; i <= maxc; i++) {
+		int p = (j and i == maxc);
+		if (k) {
+			if (i >= b) add_self(dp[z][j][k], dpf(z + 1, p, 1));
+			else add_self(dp[z][j][k], dpf(z + 1, p, 0));
+		} else {
+			if (i > b) add_self(dp[z][j][k], dpf(z + 1, p, 1));
+			else add_self(dp[z][j][k], dpf(z + 1, p, 0));
+		}
+	}
+	return dp[z][j][k];
+}
+
+int32_t main() {
+	cin >> n >> A >> B;
+	memset(dp, -1, sizeof(dp));
+	reverse(B.begin(),B.end());
+	cout << dpf(0, 1, 0);
+}
