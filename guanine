@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+queue <string> q1;
+queue <char> q2;
+queue <int> q3;
+deque <char> dq;
+
+int32_t main() {
+    int n;
+    cin >> n;
+    string s;
+    char a;
+    int b;
+    long long z;
+    for(int i = 0; i < n; i++){
+        cin >> s;
+        q1.push(s);
+        if (s == "ADD_BACK" or s == "ADD_FRONT"){
+            cin >> a;
+            q2.push(a);
+        }
+        else{
+            cin >> b;
+            q3.push(b);
+        }
+    }
+    for (int i = 0; i < n; i++){
+        if (q1.front() == "ADD_BACK"){
+            dq.push_back(q2.front());
+            q2.pop();
+        }
+        else if (q1.front() == "ADD_FRONT"){
+            dq.push_front(q2.front());
+            q2.pop();
+        }
+        else if (q1.front() == "SNIP_BACK"){
+            z = dq.size();
+            for (int j = z - q3.front(); j > 1; j--){
+                dq.pop_back();
+            }
+            q3.pop();
+        }
+        else if (q1.front() == "SNIP_FRONT"){
+            for (int j = -1; j < q3.front(); j++){
+                dq.pop_front();
+            }
+            q3.pop();
+        }
+        else{
+            cout << dq[q3.front()] << endl;
+            q3.pop();
+        }
+        q1.pop();
+    }
+}
