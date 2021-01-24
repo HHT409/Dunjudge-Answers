@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+#include <ctype.h>
+#include <string.h>
+using namespace std;
+#define int long long
+
+int32_t main() {
+    int n, m, k;
+    cin >> n >> m >> k;
+    if (k == 0) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << "O";
+            }
+            cout << '\n';
+        }
+    } else if (k < m) {
+        for (int i = 0; i < k; i++) {
+            cout << "X";
+        }
+        for (int i = 0; i < m - k; i++) {
+            cout << "O";
+        }
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << "O";
+            }
+            cout << '\n';
+        }
+    } else {
+        float div = k / m;
+        for (int i = 0; i < floor(div); i++) {
+            for (int j = 0; j < m; j++) {
+                cout << "X";
+            }
+            cout << '\n';
+        }
+        for (int i = 0; i < k % m; i++) {
+            cout << "X";
+        }
+        for (int i = 0; i < m - k % m; i++) {
+            cout << "O";
+        }
+        cout << '\n';
+        for (int i = 0; i < n - ceil(div) - 1; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << "O";
+            }
+            cout << '\n';
+        }
+    }
+}
