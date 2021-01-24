@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N=1000000;
+int yay;
+int main(){
+	cin>>yay;
+	bool sieve[N+5];
+	memset(sieve, 1, sizeof(sieve));
+	
+	sieve[0]=sieve[1]=0;
+	
+	for (int i=2; i<=N; i++){
+		if (sieve[i]){ // prime number
+			for (int j=2*i; j<=N; j+=i){
+				sieve[j]=0;
+			}
+		}
+	}
+	int count=1;
+	int thingi[yay+5];
+	for (int i=2; i<N; i++){
+		if (sieve[i]==1){
+			thingi[count]=i;
+			count++;
+		}
+	}
+	cout<<thingi[yay];	
+	return 0;
+}
