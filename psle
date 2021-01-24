@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+int a;
+
+int main () {
+	cin >> a;
+	if (a >= 91) cout << "A*";
+	if (75 <= a and a <= 90) cout << "A";
+	if (60 <= a and a <= 74) cout << "B";
+	if (50 <= a and a <= 59) cout << "C";
+	if (35 <= a and a <= 49) cout << "D";
+	if (20 <= a and a <= 34) cout << "E";
+	if (19 >= a	) cout << "U";
+}
