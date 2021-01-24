@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long hi[300010] = {1};
+long long ans = 1;
+int n;
+int arr1[300010], arr2[300010], lol[300010];
+
+void update(int a, int b) {
+    for (; a <= n; a += a & -a)
+        lol[a] += b;
+}
+int query(int a) {
+    int res = 0;
+    for (; a; a -= a & -a)
+        res += lol[a];
+    return res;
+}
+void solve() {
+    for (int i = 1; i <= n; ++i) {
+        lol[i] += 1;
+        int a = i + (i & -i);
+        if (a <= n) lol[a] += lol[i];
+    }
+    for (int i = 1; i <= n; ++i) {
+        (ans += (query(arr1[i]) - 1) * hi[n - i]) %= 1000000007;
+        update(arr1[i], -1);
+    }
+    cout << ans << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 1; i <= n; ++i) {
+        cin >> arr1[i];
+        arr2[i] = arr1[i];
+    }
+    sort(arr2 + 1, arr2 + n + 1);
+    for (int i = 1; i <= n; ++i)
+        arr1[i] = lower_bound(arr2 + 1, arr2 + n + 1, arr1[i]) - arr2;
+    for (int i = 1; i < n; ++i)
+        (hi[i] = hi[i - 1] * i) %= 1000000007;
+    solve();
+}
