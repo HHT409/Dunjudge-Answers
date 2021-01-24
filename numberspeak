@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool first = true;
+string ok (char c) {
+    if (!first) {
+        if (c == '0') return "zero";
+        if (c == '1') return "one";
+        if (c == '2') return "two";
+        if (c == '3') return "three";
+        if (c == '4') return "four";
+        if (c == '5') return "five";
+        if (c == '6') return "six";
+        if (c == '7') return "seven";
+        if (c == '8') return "eight";
+        if (c == '9') return "nine";
+    }
+    else {
+        if (c == '0') return "Zero";
+        if (c == '1') return "One";
+        if (c == '2') return "Two";
+        if (c == '3') return "Three";
+        if (c == '4') return "Four";
+        if (c == '5') return "Five";
+        if (c == '6') return "Six";
+        if (c == '7') return "Seven";
+        if (c == '8') return "Eight";
+        if (c == '9') return "Nine";
+    }
+}
+
+main() {
+    int n;
+    string s;
+    cin >> n;
+    string arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    for(int i = 0; i < n; i++) {
+        first = true;
+        s = arr[i];
+        for(int j = 0; j < s.size(); j++) {
+            if(j + 1 == s.size())
+              cout << ok(s[j]);
+            else
+              cout << ok(s[j]) << " ";
+            first = false;
+        }
+        cout << "\n";
+    }
+}
