@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int32_t main() {
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int n,e,Q;
+	const int INF=1000000010;
+	cin>>n>>e>>Q;
+	long long dist[205][205];
+	long long query[Q][2];
+	for (int i=0; i<n; i++){
+		for (int p=0; p<n; p++){
+			dist[i][p]=INF;
+		}
+	}
+	for (int i=0; i<n; i++){
+		dist[i][i]=0;
+	}
+	for (int i=0; i<e; i++){
+		int a,b;
+		long long t;
+		cin>>a>>b>>t;
+		
+		dist[a][b]=t;
+		dist[b][a]=t;
+	}
+	
+	for (int i=0; i<Q; i++){
+		cin>>query[i][0]>>query[i][1];
+	}
+	
+	
+
+	for (int k=0; k<n; k++){
+		for (int i=0;i<n; i++){
+			for (int j=0; j<n; j++){
+				if (dist[i][k] + dist[k][j] < dist[i][j]){
+					dist[i][j]= dist[i][k] + dist[k][j];
+					dist[j][i]= dist[i][k] + dist[k][j];
+				}
+				
+			}
+		}
+	}
+	
+	for (int i=0; i<Q; i++){
+		int a=query[i][0];
+		int b=query[i][1];
+		if (dist[a][b]==INF){
+			dist[a][b]=-1;
+		}
+		
+		cout<<dist[a][b]<<'\n';
+	}
+		
+	return 0;
+}
