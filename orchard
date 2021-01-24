@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    int n, m, cursum, ans = -1000000, num_of_ones = 0;
+    char x;
+    cin >> n >> m;
+    int arr[n + 5][m + 5], staticsum[n + 5][m + 5], c[m + 5];
+    memset(arr, 0, sizeof(arr));
+    memset(staticsum, 0, sizeof(staticsum));
+    memset(c, 0, sizeof(c));
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cin >> x;
+            if (x == '1') {
+                arr[i][j] = 1;
+                num_of_ones++;
+            } else {
+                arr[i][j] = -1;
+            }
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            staticsum[i][j] = staticsum[i - 1][j] + arr[i][j];
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = i; j <= n; j++) {
+            for (int p = 1; p <= m; p++) {
+                c[p] = staticsum[j][p] - staticsum[i - 1][p];
+                c[p] = max(c[p], c[p] + c[p - 1]);
+                ans = max(ans, c[p]);
+            }
+        }
+    }
+    cout << num_of_ones - ans;
+}
