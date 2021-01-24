@@ -1,0 +1,35 @@
+//80
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int a1[501], b1[501], c1[501], d1[501];
+
+int32_t main() {
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    for (int i = 0; i < a; i++) {
+        cin >> a1[i];
+    }
+    for (int i = 0; i < b; i++) {
+        cin >> b1[i];
+    }
+    for (int i = 0; i < c; i++) {
+        cin >> c1[i];
+    }
+    for (int i = 0; i < d; i++) {
+        cin >> d1[i];
+    }
+    for (int n = 0; n < a; n++) {
+        for (int m = 0; m < b; m++) {
+            for (int o = 0; o < c; o++) {
+                for (int p = 0; p < d; p++) {
+                    if (a1[n] + b1[m] + c1[o] + d1[p] == 0) {
+                        cout << a1[n] << " " << b1[m] << " " << c1[o] << " " << d1[p];
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
+}
