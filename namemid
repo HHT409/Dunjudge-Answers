@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+string s;
+int n, sum = 0;
+
+int32_t main() {
+	cin >> s;
+	int len = s.size();
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            cout << " ";
+        }
+        for (int j = 0; j < i + 1; j++) {
+            cout << s[sum % len] << " ";
+            sum++;
+        }
+        cout << '\n';
+	}
+}
