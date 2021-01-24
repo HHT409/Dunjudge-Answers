@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int r, c;
+string s;
+vector <int> v;
+
+int maxnum(vector <int> v) {
+    int big = -10000;
+    int len = v.size();
+    for (int i = 0; i < len; i++) {
+        if (v[i] > big) {
+            big = v[i];
+        }
+    }
+    return big;
+}
+
+int quotient(int n, int m) {
+    int rem = n % m;
+    int ans = (n - rem) / m;
+    return ans;
+}
+
+int32_t main() {
+	cin >> s;
+	int len = s.size();
+	if (len == 1 or len == 2) {
+        cout << s;
+        return 0;
+	}
+	for (int i = 1; i <= sqrt(len); i++) {
+        if (len % i == 0) {
+            v.push_back(min(i, len / i));
+        }
+	}
+	r = maxnum(v);
+	c = len / r;
+	char arr[r][c];
+	for (int i = 0; i < len; i++) {
+        arr[i % r][i / r] = s[i];
+	}
+	for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cout << arr[i][j];
+        }
+	}
+}
