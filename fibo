@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    long long n, m;
+    int f[2000];
+    f[0] = 1;
+    f[1] = 1;
+    cin >> n >> m;
+    for (int i = 2; i < 2000; i++) {
+        f[i] = f[i - 1] + f[i - 2];
+        f[i] = f[i] % m;
+    }
+    cout << f[n - 1];
+}
