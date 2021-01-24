@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int t;
+typedef long long ll;
+
+ll qexp(ll A, ll B, ll M){
+	ll ans = 1;
+	while (B>0){
+		if (B%2 == 1) ans = (ans*A) % M;
+		A = (A*A) %M;
+		B/=2;
+	}
+	return ans;
+}
+
+int main(){
+	cin>>t;
+	int a,b,c;
+	for (int i=0; i<t; i++){
+		cin>>a>>b>>c;
+		cout<<qexp(a,b,c)<<'\n';
+	}
+	
+	return 0;
+}
