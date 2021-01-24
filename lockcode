@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+vector <int> prime;
+
+main(){
+	int n, sum = 0;
+	for (int j = 0; j < 4; j++) {
+        cin >> n;
+        if (n == 1){
+            cout << "Wrong code";
+            break;
+        }
+        for (int i = 2; i <= sqrt(n); i++) {
+            while(n % i == 0) {
+                prime.push_back(i);
+                n /= i;
+            }
+        }
+        if (prime.size() >= 1){
+            cout << "Wrong code";
+            break;
+        } else {
+            sum++;
+        }
+	}
+	if (sum == 4) {
+        cout << "Opening...";
+	}
+}
