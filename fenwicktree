@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long fw[100010],fw2[100010],N,A[100010],m,t,a,b,c;
+
+void update(long long x,long long y,long long v) {
+	y++;
+	for (long long tx=x; tx <= N; tx += tx&(-tx)) fw[tx] += v, fw2[tx] -= v*(x-1);
+	for (long long ty=y; ty <= N; ty += ty&(-ty)) fw[ty] -= v, fw2[ty] += v*(y-1);
+}
+long long sum(long long x) {
+	long long res = 0;
+	for (long long tx=x; tx; tx -= tx&(-tx)) res += fw[tx]*x + fw2[tx];
+	return res;
+}
+long long range_sum(long long x, long long y) {
+	return sum(y)-sum(x-1);
+}
+int main(){
+	cin >> N;
+	for (long long i =1;i<=N;i++) {
+		cin >> A[i];
+		update(i,i,A[i]);
+	}
+	cin >> m;
+	for (long long i =0;i<m;i++) {
+		cin >> t;
+		if (t == 0) {
+			cin >> a >> b;
+			cout << range_sum(a+1,b+1) << "\n";
+		} else {
+			cin >> a >> b >> c;
+			update(a+1, b+1, c);
+		}
+	}
+}
