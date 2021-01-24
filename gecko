@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n, m;
+    cin >> n >> m;
+    int wall[n][m], food[n][m];
+    int ans[m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> wall[i][j];
+            if (i == 0) {
+                food[0][j] = wall[0][j];
+            } else {
+                if (j == 0) {
+                    food[i][j] = max(food[i - 1][j], food[i - 1][j + 1]) + wall[i][j];
+                } else if (j == m - 1) {
+                    food[i][j] = max(food[i - 1][j - 1], food[i - 1][j]) + wall[i][j];
+                } else {
+                    food[i][j] = max(max(food[i - 1][j - 1], food[i - 1][j]), food[i - 1][j + 1]) + wall[i][j];
+                }
+            }
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        ans[i] = food[n - 1][i];
+    }
+    sort(ans, ans + m, greater <int> ());
+    cout << ans[0];
+}
