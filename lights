@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+#include <math.h>
+using namespace std;
+#define int long long
+
+main() {
+    long long n, ans;
+    cin >> n;
+    ans = floor(sqrt(n));
+    cout << ans;
+}
