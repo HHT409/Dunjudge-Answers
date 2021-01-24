@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#include <string>
+#include <math.h>
+using namespace std;
+
+bool mark(long long a, char op, long long b, char eq, long long ans) {
+    long long score = 0;
+    if (op == '+') {
+        if (a + b == ans) {
+            score++;
+        }
+    } else if (op == '-') {
+        if (a - b == ans) {
+            score++;
+        }
+    }
+    if (score == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+int32_t main() {
+    long long k, n, m, ans, stotal = 0, ptotal = 0;
+    char op, eq;
+    cin >> k;
+    for (long long i = 0; i < k; i++) {
+        cin >> n >> op >> m >> eq >> ans;
+        if (mark(n, op, m, eq, ans)) {
+            stotal++;
+        }
+    }
+    for (long long i = 0; i < k; i++) {
+        cin >> n >> op >> m >> eq >> ans;
+        if (mark(n, op, m, eq, ans)) {
+            ptotal++;
+        }
+    }
+    cout << "Spongebob: " << stotal << '\n' << "Patrick: " << ptotal;
+}
