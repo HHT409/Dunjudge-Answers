@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+char x;
+map <char, int> freq;
+
+int main() {
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+		cin >> x;
+		freq[x]++;
+	}
+	for (char c = 'a'; c <= 'z'; c++) {
+		cout << c << " " << freq[c] << "\n";
+	}		
+}
