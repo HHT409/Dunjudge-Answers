@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+priority_queue <int> pq;
+
+main() {
+    long long n, m, init = 0, ans = 0, sum = 0;
+    int arr[1000];
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        pq.push(arr[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        if (i - init + 1 > m) {
+            sum -= arr[init];
+            init++;
+        }
+        sum += arr[i];
+        ans = max(ans, sum);
+    }
+    cout << ans;
+}
