@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int32_t main() {
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int n;
+	cin >> n;
+	long long dist[510][510];
+	
+	for (int i = 0; i < n; i++) {
+		for (int p = 0; p < n; p++) {
+			cin >> dist[i][p];
+		}
+	}
+	
+	for (int k = 0; k < n; k++) {
+		for (int i= 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				dist[i][j] = max(min(dist[i][k], dist[k][j]), dist[i][j]);
+			}
+		}
+	}
+	
+	long long current = 1000100;
+	for (int i = 0; i < n; i++) {
+		for (int p = 0; p < n; p++) {
+			current = min(dist[i][p], current);
+		}
+	}
+	cout << current;
+	
+	return 0;
+}
