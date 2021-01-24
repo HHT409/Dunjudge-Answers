@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long n, p = 0, w = 0, g = 0, y = 0, sum = 0;
+    cin >> n;
+    char color[n];
+    for (int i = 0; i < n; i++) {
+        cin >> color[i];
+        if (color[i] == 'P') {
+            p++;
+        } else if (color[i] == 'W') {
+            w++;
+        } else if (color[i] == 'G') {
+            g++;
+        } else if (color[i] == 'Y') {
+            y++;
+        }
+    }
+    if (p > 0) {
+        sum++;
+    }
+    if (w > 0) {
+        sum++;
+    }
+    if (g > 0) {
+        sum++;
+    }
+    if (y > 0) {
+        sum++;
+    }
+    if (sum == 3) {
+        cout << "Three";
+    } else if (sum == 4) {
+        cout << "Four";
+    }
+}
