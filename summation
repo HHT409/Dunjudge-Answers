@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    long long a, sum = 0;
+    int arr[100000];
+    cin >> a;
+    for (int i = 0; i < a; i++) {
+        cin >> arr[i];
+    }
+    for (int j = 0; j < a; j++) {
+        if (arr[j] < 0) {
+            sum -= arr[j];
+        } else if (arr[j] >= 0) {
+            sum += arr[j];
+        }
+    }
+    cout << sum;
+}
