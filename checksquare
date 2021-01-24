@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+#include <math.h>
+
+using namespace std;
+int main() {
+    long long n;
+    cin >> n;
+    if (sqrt(n) - floor(sqrt(n)) == 0) {
+        cout << "yes";
+    } else {
+        cout << "no";
+    }
+}
