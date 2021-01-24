@@ -1,0 +1,21 @@
+#include "swapcup.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+long long ball = 2;
+
+void startGame() {
+    long long n;
+}
+
+void swap(int a, int b) {
+    if (a == ball) {
+        ball = b;
+    } else if (b == ball) {
+        ball = a;
+    }
+}
+
+int getAnswer() {
+    return ball;
+}
