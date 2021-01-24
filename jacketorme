@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+string str;
+int jacket = 0, ranald = 0;
+
+int main () {
+	cin >> str;
+	for (int i = 0; i < str.size() - 5; i++) {
+		string substr = "";
+		for (int j = i; j < i + 6; j++) substr += str[j];
+		
+		if (substr == "JACKET") jacket ++;
+		if (substr == "RANALD") ranald ++;
+	}
+	
+	if (jacket > ranald) cout << "JACKET";
+	else cout << "RANALD" ;
+}
