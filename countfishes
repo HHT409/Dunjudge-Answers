@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int prime[1000001];
+int thingi[1000000];
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    int total = 0;
+    for (int i = 0; i <= 1000000; i++) {
+        prime[i] = 1;
+    }
+    prime[0] = 0;
+    prime[1] = 0;
+    for(int i = 4; i <= 1000000; i += 2) {
+        prime[i] = 0;
+    }
+    for(int i = 3; i <= 1000000; i += 2){
+        if(prime[i] == 1){
+            for(int j = i * i; j <= 1000000; j += i){
+                prime[j] = 0;
+            }
+        }
+    }
+    for (int i = 0; i <= 1000000; i++) {
+        if (prime[i] == 1) {
+            total++;
+        }
+        thingi[i] = total;
+    }
+    int n, a, b;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> a >> b;
+        cout << thingi[b] - thingi[a - 1] << '\n';
+    }
+}
