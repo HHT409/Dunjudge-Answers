@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int h, w, peanut, potato;
+
+int main () {
+	cin >> h >> w;
+	for (int i = 0; i < h; i++) {
+		for (int j = 0; j < w; j++) {
+			char x; cin >> x;
+			if (x == 'N') peanut++;
+			else if (x == 'O') potato++;
+		}
+	}
+	cout << potato << " " << peanut;
+}
