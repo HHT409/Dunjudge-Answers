@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+typedef pair <int, int> pi;
+
+int n, m, startn, startm;
+
+bool is_grass[110][110];
+int arr[110][110];
+queue <pi> q;
+
+int dx[] = {0, 0, 1, -1, 1, 1, -1, -1};
+int dy[] = {1, -1, 0, 0, 1, -1, 1, -1};
+
+int32_t main() {
+    cin >> n >> m >> startn >> startm;
+    for (int i = m; i >= 1; i--) {
+        for (int j = 1; j <= n; j++) {
+            char c;
+            cin >> c;
+            if (c == '.') {
+                is_grass[i][j] = true;
+            }
+        }
+    }
+    memset(arr, -1, sizeof(arr));
+    arr[startm][startn] = false;
+    q.push(make_pair(startm, startn));
+    int ans = 0;
+    while (!q.empty()) {
+        pi curnum = q.front();
+        q.pop();
+        int x = curnum.first, y = curnum.second;
+        for (int i = 0; i < 8; i++) {
+            int a = x + dx[i];
+            int b = y + dy[i];
+            if (a <= 0 or a > m) {
+                continue;
+            }
+            if (b <= 0 or b > n) {
+                continue;
+            }
+            if (is_grass[a][b] == 0) {
+                continue;
+            }
+            if (arr[a][b] != -1) {
+                continue;
+            }
+            q.push(make_pair(a, b));
+            arr[a][b] = arr[x][y] + 1;
+            ans = max(ans, arr[a][b]);
+        }
+    }
+    cout << ans;
+}
