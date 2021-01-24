@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int32_t main() {
+    long long n, sum = 0;
+    cin >> n;
+    string hex[n];
+    for (long long i = 0; i < n; i++) {
+        cin >> hex[i];
+    }
+    for (long long i = 0; i < n; i++) {
+        string str = hex[i];
+        if (str[0] == '#') {
+            sum++;
+        }
+        for (long long j = 1; j <= 6; j++) {
+            if (str[j] == '0' or str[j] == '1' or str[j] == '2' or str[j] == '3' or str[j] == '4' or str[j] == '5' or str[j] == '6' or str[j] == '7' or str[j] == '8' or str[j] == '9' or str[j] == 'A' or str[j] == 'B' or str[j] == 'C' or str[j] == 'D' or str[j] == 'E' or str[j] == 'F') {
+                sum++;
+            }
+        }
+        if (sum == 7) {
+            cout << "Hexadecimal\n";
+        } else {
+            cout << "Not Hexadecimal\n";
+        }
+        sum = 0;
+    }
+}
