@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+main(){
+	double m, c;
+    cin >> m >> c;
+	cout << fixed << showpoint;
+	cout << setprecision(1);
+    cout << -(c/m);
+}
