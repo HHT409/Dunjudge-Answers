@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+priority_queue<int> pq;
+
+int32_t main() {
+    long long n, sum = 0;
+    int arr[20000], arr2[20000];
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        sum += arr[i];
+    }
+    for (int i = 0; i < n; i++) {
+        cin >> arr2[i];
+        pq.push(arr2[i]);
+    }
+    for (int j = 0; j < n; j++) {
+        if (!pq.empty()) {
+            sum += pq.top() * j;
+            pq.pop();
+        }
+    }
+    cout << sum;
+}
