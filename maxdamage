@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+#include <iomanip>
+using namespace std;
+#define int long long
+
+main() {
+    char x;
+    float n, m, a, b, c, d, wm, sum;
+    cin >> x;
+    cin >> n >> m;
+    cin >> a >> b >> c >> d;
+    if (x == 'G') wm = 1.6;
+    else if (x == 'K') wm = 1.7;
+    sum = wm * (4 * n + m) * ((a + b + c + d) / 100);
+    cout << fixed << showpoint;
+	cout << setprecision(2);
+    cout << sum;
+}
