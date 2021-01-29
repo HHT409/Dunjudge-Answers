@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    int n, sum = 0;
+    cin >> n;
+    int x1[n], x2[n], y1[n], y2[n], x22[n], y22[n];
+    for (int i = 0; i < n; i++) {
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+        x1[i] = a;
+        x2[i] = b;
+        y1[i] = c;
+        y2[i] = d;
+        x22[i] = b;
+        y22[i] = d;
+    }
+    sort(x1, x1 + n, greater <int> ());
+    sort(x2, x2 + n);
+    sort(y1, y1 + n, greater <int> ());
+    sort(y2, y2 + n);
+    if (x2[0] - x1[0] <= 0 or y2[0] - y1[0] <= 0) {
+        cout << "0";
+    } else {
+        cout << (x2[0] - x1[0]) * (y2[0] - y1[0]);
+    }
+}
