@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main() {
+    int n, sum = 0;
+    int f[100];
+    f[0] = 1;
+    f[1] = 1;
+    cin >> n;
+    for (int i = 2; i < 100; i++) {
+        f[i] = f[i - 1] + f[i - 2];
+    }
+    while (n != 0) {
+        int ans = 0;
+        while (f[ans] < n && f[ans + 1] < n) {
+            ans++;
+            if (f[ans] == n or f[ans + 1] == n) {
+                sum++;
+                cout << sum * 3;
+                return 0;
+            }
+        }
+        n -= f[ans];
+        sum++;
+        //cout << n << '\n';
+    }
+    cout << sum * 3;
+}
