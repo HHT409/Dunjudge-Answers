@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int small[100005], big[100005], n, m;
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        small[a] = max(small[a], c);
+        small[b] = max(small[b], c);
+    }
+
+    for (int i = 0; i < n; i++) {
+        small[i + 1] = max(small[i + 1], 1);
+    }
+
+    for (int i = 1; i <= n; i++) {
+        cout << small[i] << " ";
+    }
+}
