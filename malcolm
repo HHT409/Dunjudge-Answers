@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int len[21];
+
+int32_t main() {
+    int n, m, start = 0, sum = 0;
+    cin >> n >> m;
+    string arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    for (int i = 0; i < n; i++) {
+        if (i - start > m) {
+            len[arr[start].length()]--;
+            start++;
+        }
+        len[arr[i].length()]++;
+        sum += len[arr[i].length()] - 1;
+    }
+    cout << sum;
+}
