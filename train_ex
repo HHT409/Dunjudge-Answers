@@ -1,0 +1,25 @@
+//10
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int32_t main() {
+    int n;
+    cin >> n;
+    int arr[10000], dp[10000];
+    for (int i = 1; i < n + 1; i++) {
+        cin >> arr[i];
+    }
+    arr[0] = 1e9;
+    arr[n + 1] = 0;
+    dp[0] = 0;
+    for (int i = 1; i <= n + 1; i++) {
+        dp[i] = 1e18;
+        for (int j = 0; j < i; j++) {
+            if (arr[j] >= arr[i]) {
+                dp[i] = min(dp[i], dp[j] + (i - j) * (i - j));
+            }
+        }
+    }
+    cout << dp[n + 1];
+}
