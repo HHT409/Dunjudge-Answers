@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector <pair <int, int> > v[2001];
+
+int n, m, ans;
+int dp[2001];
+
+int main(){
+
+	cin >> n >> m;
+	for(int i = 0; i < m; i++){
+		int a, b, c;
+		cin >> a >> b >> c;
+		v[b].push_back(make_pair(a, c));
+	}
+	for(int i = 1; i <= n; i++){
+		sort(v[i].begin(), v[i].end(), greater <pair <int, int> > ());
+		int sum = 0;
+		for (int j = 0; j < n / i; j++){
+			if (sum >= v[i].size()) {
+                break;
+			}
+			for (int p = n; p >= i; p--) {
+				dp[p] = max(dp[p], dp[p - i] + v[i][sum].first);
+				ans = max(ans, dp[p]);
+			}
+			v[i][sum].second--;
+			if(v[i][sum].second == 0) {
+                sum++;
+			}
+		}
+	}
+	cout << ans;
+}
