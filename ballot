@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+map <int, int> mp;
+
+int32_t main() {
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0 ; i < n; i++) {
+        int a;
+        cin >> a;
+        mp[a] = i + 1;
+    }
+    mp[2e9 + 1] = -1;
+    mp[-1e9] = -1;
+    for (int i = 0; i < m; i++) {
+        int b;
+        cin >> b;
+        auto it = mp.lower_bound(b);
+        auto p = prev(it);
+        if (it -> first - b < b - p -> first) {
+            mp.erase(it);
+            cout << it -> second;
+            if (i != m - 1) {
+                cout << '\n';
+            }
+        } else {
+            mp.erase(p);
+            cout << p -> second;
+            if (i != m - 1) {
+                cout << '\n';
+            }
+        }
+    }
+}
