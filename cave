@@ -1,0 +1,57 @@
+#include "cave.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+int arr1[5005], door[5005];
+bool cave[5005], open1, open2;
+
+void exploreCave(int a) {
+    for (int i = 0; i < a; i++) {
+        door[i] = -1;
+    }
+    memset(cave, 0, sizeof cave);
+    n = tryCombination(arr1);
+
+    for (int i = 0; i < a; i++) {
+        if (n == -1 or n > i) {
+            open1 = true;
+        } else {
+            open1 = false;
+        }
+
+        int upper = a, lower = -1;
+
+        while (upper - lower > 1) {
+            int mid = (upper + lower) / 2;
+            for (int j = lower + 1; j <= mid; j++) {
+                if (cave[j]) {
+                    continue;
+                }
+                arr1[j] = !arr1[j];
+            }
+            n = tryCombination(arr1);
+
+            if (n == -1 or n > i) {
+                open2 = true;
+            } else {
+                open2 = false;
+            }
+
+            if (open2 == open1) {
+                lower = mid;
+            } else {
+                upper = mid;
+            }
+            open1 = open2;
+        }
+        door[upper] = i;
+        cave[upper] = true;
+
+        if (!open2) {
+            arr1[upper] = !arr1[upper];
+            n = tryCombination(arr1);
+        }
+    }
+    answer(arr1, door);
+}
