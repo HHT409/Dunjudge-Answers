@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+typedef pair <int, int> pi;
+multiset <int> ms;
+deque <pi> dq;
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int m;
+        cin >> m;
+        if (m == 0) {
+            if (dq.empty()) {
+                cout << "-1";
+                if (i != n) {
+                    cout << '\n';
+                }
+            } else {
+                cout << dq.front().second;
+                if (i != n - 1) {
+                    cout << '\n';
+                }
+                ms.erase(ms.find(dq.front().first));
+                dq.pop_front();
+            }
+        } else {
+            int a, b;
+            cin >> a >> b;
+            if (dq.empty()) {
+                dq.push_back(pi(a, b));
+            } else if (a > *(--ms.end())) {
+                dq.push_front(pi(a, b));
+            } else {
+                dq.push_back(pi(a, b));
+            }
+            ms.insert(a);
+        }
+    }
+}
