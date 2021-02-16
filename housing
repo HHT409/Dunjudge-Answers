@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int ans(int n, int m) {
+    if (n < m) {
+        return 0;
+    }
+    if (n < 2 * m) {
+        return 1;
+    }
+    int sum = 1;
+    for (int i = m; i < n; i++) {
+        sum += ans(n - i, i);
+    }
+    return sum;
+}
+
+int32_t main() {
+    int n;
+    cin >> n;
+    cout << ans(n, 5);
+}
