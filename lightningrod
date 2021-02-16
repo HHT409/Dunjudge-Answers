@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+inline long long readInt() {
+    long long x = 0;
+    char ch = getchar_unlocked();
+    while (ch < '0' || ch > '9') ch = getchar_unlocked();
+    while (ch >= '0' && ch <= '9'){
+		x = (x << 3) + (x << 1) + ch - '0';
+		ch = getchar_unlocked();
+	}
+    return x;
+}
+
+int X[10000009], Y[10000009];
+
+int32_t main(){
+	int n = readInt();
+	int ans = 0;
+	for(int i=0;i<n;i++){
+		int x = readInt();
+		int y = readInt();
+		X[i] = x + y;
+		Y[i] = y - x;
+		if (i) {
+            X[i] = max(X[i], X[i - 1]);
+		}
+	}
+	for (int i= n - 1; i >= 0; i--){
+		ans += ((i == 0) or X[i] > X[i - 1]) && ((i == n - 1) or Y[i] > Y[i + 1]);
+		if(i != n - 1) {
+            Y[i] = max(Y[i], Y[i + 1]);
+		}
+	}
+	cout << ans;
+}
