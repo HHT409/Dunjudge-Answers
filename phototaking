@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+inline long long readInt() {
+    long long x = 0;
+    char ch = getchar_unlocked();
+    while (ch < '0' || ch > '9') ch = getchar_unlocked();
+    while (ch >= '0' && ch <= '9'){
+		x = (x << 3) + (x << 1) + ch - '0';
+		ch = getchar_unlocked();
+	}
+    return x;
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    int n =readInt();
+    int m = readInt();
+    int32_t arr[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = readInt();
+    }
+    int start = 0, end = 0, count = 0, sum = arr[0];
+    while (start < n && end < n) {
+        if (sum <= m) {
+            end++;
+            if (end >= start) {
+                count += end - start;
+            }
+            if (end < n) {
+                sum += arr[end];
+            }
+        } else {
+            sum -= arr[start];
+            start++;
+        }
+    }
+    cout << count;
+}
