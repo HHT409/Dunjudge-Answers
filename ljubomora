@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int32_t main(){
+    int n, m, sum = 0, ans = 0, hi = 1000000001, wat;
+    cin >> n >> m;
+    int arr[m];
+    for (int i = 0; i < m; i++) {
+        cin >> arr[i];
+    }
+    while(ans < hi){
+        wat = (ans + hi) >> 1;
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            count += (arr[i] + wat - 1) / wat;
+        }
+        if (count <= n) {
+            hi = wat;
+        } else {
+            ans = wat + 1;
+        }
+    }
+    cout << ans;
+}
