@@ -1,0 +1,30 @@
+#include "primepie.h"
+#include <bits/stdc++.h>
+using namespace std;
+#define big 20000000
+
+bool prime[big];
+
+void primestuff() {
+    memset(prime, true, sizeof(prime));
+    prime[1] = false;
+    for (long long i = 2; i * i <= big; i++) {
+        if (prime[i] == true) {
+            for (long long j = i * 2; j <= big; j += i)
+                prime[j] = false;
+        }
+    }
+}
+
+long long int amountEaten(int n) {
+    primestuff();
+    long long count = 0, num = 1, sum = 0;
+    while (count < n) {
+        if (prime[num]) {
+            sum += num;
+            count++;
+        }
+        num++;
+    }
+    return sum;
+}
