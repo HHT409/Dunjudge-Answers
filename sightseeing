@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+typedef pair <int, int> pi;
+ 
+int n, m, k;
+int st[500050], en[10000010], len[10000010], nxt[10000010];
+inline void add(int s,int e,int c,int l){nxt[c]=st[s],st[s]=c,en[c]=e,len[c]=l;}
+int ans[500050];
+bool chk[500050];
+pi heap[5000050];
+ 
+void getInt(int &a){
+	a = 0;
+	char c = getchar();
+	while ('0' <= c && c <= '9')a=(a<<3)+(a<<1)+c-'0', c = getchar();
+}
+ 
+int32_t main() {
+	getInt(n), getInt(m), getInt(k);
+	int i;
+	for (i = 1; i <= m; i++) {
+		int x, y, l;
+		getInt(x), getInt(y), getInt(l);
+		add(x, y, i << 1, l);
+		add(y, x, i << 1 | 1, l);
+	}
+	int top = 1;
+	heap[0] = pi(1e9,1);
+	while (top) {
+		pi cur = heap[0];
+		pop_heap(heap, heap + top);
+		top--;
+		if (chk[cur.second]) continue;
+		chk[cur.second] = 1;
+		ans[cur.second] = cur.first;
+		for (i = st[cur.second]; i; i = nxt[i]){
+			if (chk[en[i]]) continue;
+			heap[top++] = pi(min(cur.first, len[i]), en[i]);
+			push_heap(heap, heap + top);
+		}
+	}
+	while (k--) {
+		int x;
+		getInt(x);
+		printf("%d\n", ans[x]);
+	}
+}
