@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+typedef pair <int, int> pi;
+
+int grid[1005][1005];
+
+queue <pi> q;
+
+int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+int32_t main() {
+    memset(grid, -1, sizeof grid);
+    int n, m, k, ans = 0;
+    cin >> n >> m >> k;
+    for (int i = 0; i < k; i++) {
+        int a, b;
+        cin >> a >> b;
+        q.push(make_pair(a, b));
+        grid[a][b] = 0;
+    }
+
+    while (!q.empty()) {
+        pi cur = q.front();
+        q.pop();
+        for (int i = 0; i < 8; i++) {
+            pi ok = make_pair(cur.first + dx[i], cur.second + dy[i]);
+            if (ok.first <= 0 or ok.first > n or ok.second <= 0 or ok.second > m) {
+                continue;
+            }
+            if (grid[ok.first][ok.second] != -1) {
+                continue;
+            }
+            grid[ok.first][ok.second] = grid[cur.first][cur.second] + 1;
+            q.push(ok);
+            ans = max(ans, grid[ok.first][ok.second]);
+        }
+    }
+    cout << ans + 1;
+}
