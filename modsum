@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int sum[1001][5];
+
+int32_t main() {
+    int n, ans = 0;
+    cin >> n;
+    sum[0][0] = 1;
+    for (int i = 1; i <= n; i++){
+        int a, b;
+        cin >> a >> b;
+        for (int j = a; j <= b; j++) {
+            int five = j % 5;
+            for (int k = 0; k < 5; k++) {
+                sum[i][k] += sum[i - 1][(k + five) % 5];
+            }
+        }
+    }
+    for (int i = 0; i < 5; i++) {
+        ans += sum[n][i] * (((i * i * i * i + 2 * i * i) % 5) + 1);
+    }
+    cout << ans;
+}
