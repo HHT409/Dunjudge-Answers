@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+ 
+typedef pair <int, int> pi;
+typedef pair <int, pi> pii;
+ 
+int store[3005], arr[3005][3005];
+vector <pii> v;
+ 
+int32_t main(){
+    int n, m, k;
+    cin >> n >> m >> k;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> arr[i][j];
+            store[j] += !arr[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        int cur = 0, num = 0;
+        for (int j = 0;j < m;j++) {
+            cur += arr[i][j] * store[j], num += arr[i][j];
+        }
+        v.push_back({-cur, {-num, i + 1}});
+        if (i + 1 == k) {
+            cout << cur << " ";
+        }
+    }
+    sort(v.begin(), v.end());
+    for (int i = 0; i < n; i++) {
+        if (v[i].second.second == k) {
+            cout << i + 1 << '\n';
+        }
+    }
+}
