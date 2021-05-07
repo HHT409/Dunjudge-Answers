@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+#include "changemin.h"
+using namespace std;
+
+int arr[1000001];
+
+void loadArray(int n, int A[]) {
+    for (int i = 0; i < n; i++) {
+        ArrayInsert(A[i]);
+        arr[i] = A[i];
+    }
+}
+
+void update(int P, int V) {
+    ArrayRemove(arr[P]);
+    arr[P] = V;
+    ArrayInsert(V);
+}
+
+int findMin() {
+    return SmallestElement();
+}
