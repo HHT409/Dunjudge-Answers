@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+typedef pair<int, int> pi;
+
+int n, a[100005], d[100005], dp[100005];
+
+deque <pi> dq;
+
+int yeet(pi line, int a) {
+    return line.first * a + line.second;
+}
+
+int query(int a) {
+    while (dq.size() >= 2 && yeet(dq[0], a) < yeet(dq[1], a)) {
+        dq.pop_front();
+    }
+    return yeet(dq[0], a);
+}
+
+long double intersect(pi jiayi, pi sucks) {
+    //cout << (long double)jiayi.first - sucks.first << "u suck\n";
+    return (((long double)sucks.second - jiayi.second) / ((long double)jiayi.first - sucks.first));
+}
+
+void insert(int a, int b) {
+    int s = dq.size() - 1;
+    pi line = make_pair(a, b);
+    while (dq.size() >= 2 && (intersect(dq[s], line) < intersect(dq[s - 1], line))) {
+        dq.pop_back();
+        s = dq.size() - 1;
+    }
+    dq.push_back(line);
+}
+
+int32_t main() {
+    int ans = 0;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    for (int i = 0; i < n; i++) {
+        cin >> d[i];
+    }
+    for (int i = 0; i < n; i++) {
+        dp[i] = a[i];
+        if (!dq.empty()) {
+            dp[i] = max(dp[i], query(d[i])+ a[i] - d[i] * d[i]);
+        }
+        insert(2 * d[i], dp[i] - d[i] * d[i]);
+        ans = max(ans, dp[i]);
+    }
+    cout << ans;
+}
