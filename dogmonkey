@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+const int mod = 1000000007;
+
+int32_t main() {
+    int n, m, p = 1;
+    cin >> n >> m;
+    if (m > n) {
+        int a = m;
+        m = n;
+        n = a;
+    }
+    if (n - m > 1) {
+        cout << 0;
+        return 0;
+    }
+    for (int i = n; i > 0; i--) {
+        p *= i;
+        p %= mod;
+    }
+    for (int i = m; i > n - m; i--) {
+        p *= i;
+        p %= mod;
+    }
+    if (m == n) {
+        p *= 2;
+        p %= mod;
+    } else {
+        for (int i = m - n - 1; i > 0; i--) {
+            p *= i;
+            p %= mod;
+        }
+    }
+    cout << p % mod;
+}
