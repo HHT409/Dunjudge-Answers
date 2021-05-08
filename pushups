@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int n, m, arr[1000005], sum[1000005];
+const int alot = 1000005;
+
+void create() {
+    for (int i = 1; i <= alot; i++) {
+        for (int j = i; j <= alot; j += i) {
+            sum[j] += i;
+        }
+        arr[i] = max(arr[i - 1], sum[i]);
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    create();
+    int n; cin >> n;
+    for (int i = 0;i < n; i++) {
+        cin >> m;
+        cout << arr[m] << '\n';
+    }
+}
