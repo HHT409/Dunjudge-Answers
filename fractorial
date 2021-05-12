@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+map <int, int> primeFactors(int num) {
+    map <int, int> mp;
+    for (int i = 2; i * i <= num; i++) {
+        while (num % i == 0) {
+            num /= i;
+            mp[i]++;
+        }
+    }
+    if (num > 1) {
+        mp[num]++;
+    }
+    return mp;
+}
+
+int find(int factor, int num) {
+    int count = 0, fac = factor;
+    while (num >= factor) {
+        count += num / factor;
+        factor *= fac;
+    }
+    return count;
+}
+ 
+bool ispossible(map <int, int> &factors, int num) {
+    for (map <int, int>::iterator it = factors.begin(); it != factors.end(); ++it) {
+        if (find(it -> first, num) < it -> second) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int search(int start, int end, map <int, int> &factors) {
+    int mid = (start + end) / 2;
+    if (!ispossible(factors, mid)) {
+        return search(mid + 1, end, factors);
+    }
+    if (start == mid) {
+        return mid;
+    }
+    return search(start, mid, factors);
+}
+
+int ans(int num) {
+    map<int, int> factors = primeFactors(num);
+    return search(1, num, factors);
+}
+
+int32_t main() {
+    int n;
+    cin >> n;
+    cout << ans(n);
+}
