@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int n, dp[30000005];
+
+void create() {
+    dp[1] = 1;
+    for (int i = 2; i < 30000005; i++) {
+        int a, b;
+        if (!(i % 2)) {
+            a = dp[i / 2];
+        } else {
+            a = 1e9;
+        }
+        if (!(i % 3)) {
+            b = dp[i / 3];
+        } else {
+            b = 1e9;
+        }
+        dp[i] = min(a, min(b, dp[i - 1])) + 1;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    create();
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int m;
+        cin >> m;
+        cout << dp[m] << '\n';
+    }
+}
