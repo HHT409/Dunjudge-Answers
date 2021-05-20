@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int n, m, mush[500005];
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        cin >> mush[i];
+    }
+    for (int i = 0; i < m; i++) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        if (a == 0) {
+            int maxm = -1e9;
+            for (int j = b; j <= c; j++) {
+                maxm = max(maxm, mush[j]);
+            }
+            cout << maxm;
+            if (i != m - 1) cout << '\n';
+        } else if (a == 1) {
+            mush[b] = c;
+        }
+    }
+}
